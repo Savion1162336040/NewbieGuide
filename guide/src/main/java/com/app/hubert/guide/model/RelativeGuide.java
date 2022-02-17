@@ -83,13 +83,15 @@ public class RelativeGuide {
         layoutParams.rightMargin += marginInfo.rightMargin;
         layoutParams.bottomMargin += marginInfo.bottomMargin;
         view.setLayoutParams(layoutParams);
+
+        onLayoutCallBack(view, controller, highLight, highLight.getRectF(viewGroup));
         return view;
     }
 
     private MarginInfo getMarginInfo(@LimitGravity int gravity, ViewGroup viewGroup, View view) {
         MarginInfo marginInfo = new MarginInfo();
         RectF rectF = highLight.getRectF(viewGroup);
-        if (rectF!=null) {
+        if (rectF != null) {
             switch (gravity) {
                 case Gravity.LEFT:
                     marginInfo.gravity = Gravity.RIGHT;
@@ -139,5 +141,9 @@ public class RelativeGuide {
      */
     protected void onLayoutInflated(View view, Controller controller) {
         //do nothing
+    }
+
+    protected void onLayoutCallBack(View view, Controller controller, HighLight highLight, RectF rectF) {
+
     }
 }

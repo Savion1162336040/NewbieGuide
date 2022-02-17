@@ -1,13 +1,19 @@
 package com.savion.newbieguide;
 
 import android.app.Activity;
+import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.hubert.guide.NewbieGuide;
 import com.app.hubert.guide.core.Controller;
+import com.app.hubert.guide.core.GuideLayout;
+import com.app.hubert.guide.listener.OnGuideChangedListener;
+import com.app.hubert.guide.listener.OnHighlightCallBack;
 import com.app.hubert.guide.model.GuidePage;
 import com.app.hubert.guide.model.HighLight;
 import com.app.hubert.guide.model.HighlightOptions;
@@ -34,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
                     .setLabel("FQA_ENTER")
                     .alwaysShow(true)
                     .addGuidePage(GuidePage.newInstance()
+                            .setOnGuideChangedListener(new OnGuideChangedListener() {
+                                @Override
+                                public void onGuideCallBack(Controller controller, GuidePage guidePage, GuideLayout viewGroup) {
+                                    if (guidePage.getHighLights() != null
+                                            && guidePage.getHighLights().size() > 0
+                                            && viewGroup != null
+                                            && guidePage.getRelativeGuides() != null
+                                            && guidePage.getRelativeGuides().size() > 0
+                                            && guidePage.getRelativeGuides().get(0).layout == R.layout.layout_guide_qa_enter) {
+                                        RectF rectF = guidePage.getHighLights().get(0).getRectF((ViewGroup) viewGroup.getParent());
+                                        if (rectF != null) {
+                                            Log.e("savion", "get rectf : " + rectF.toString());
+                                        }
+                                    }
+                                }
+                            })
                             .addHighLightWithOptions(relatedview,
                                     HighLight.Shape.CIRCLE,
                                     false,
@@ -50,6 +72,18 @@ public class MainActivity extends AppCompatActivity {
                                                         calGuideAlignCenter(arrow, relatedview);
                                                         calGuideAlignCenter(desc, relatedview);
                                                     }
+                                                }
+
+                                                @Override
+                                                protected void onLayoutCallBack(View view, Controller controller, HighLight highLight, RectF rectF) {
+                                                    super.onLayoutCallBack(view, controller, highLight, rectF);
+                                                    Log.e("savion", "get rectf222 : " + rectF.toString());
+                                                }
+                                            })
+                                            .setOnHighlightCallBack(new OnHighlightCallBack() {
+                                                @Override
+                                                public void onHighlightCallBack(GuideLayout guideLayout, View view, Controller controller, HighLight highLight, RectF rectF) {
+                                                    Log.e("savion", "get rectf333 : " + rectF.toString());
                                                 }
                                             })
                                             .setOnClickListener(v -> {

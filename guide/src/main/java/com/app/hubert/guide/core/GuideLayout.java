@@ -290,8 +290,21 @@ public class GuideLayout extends FrameLayout {
         List<RelativeGuide> relativeGuides = guidePage.getRelativeGuides();
         if (relativeGuides.size() > 0) {
             for (RelativeGuide relativeGuide : relativeGuides) {
-                addView(relativeGuide.getGuideLayout((ViewGroup) getParent(), controller));
+                View view = relativeGuide.getGuideLayout((ViewGroup) getParent(), controller);
+                addView(view);
+                if (relativeGuide.highLight != null
+                        && relativeGuide.highLight.getOptions() != null
+                        && relativeGuide.highLight.getOptions().onHighlightCallBack != null) {
+                    relativeGuide.highLight.getOptions().onHighlightCallBack.onHighlightCallBack(this,
+                            view,
+                            controller,
+                            relativeGuide.highLight,
+                            relativeGuide.highLight.getRectF((ViewGroup) getParent()));
+                }
             }
+        }
+        if (guidePage.getOnGuideChangedListener() != null) {
+            guidePage.getOnGuideChangedListener().onGuideCallBack(controller, guidePage, this);
         }
     }
 

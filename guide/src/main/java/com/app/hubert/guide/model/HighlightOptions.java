@@ -2,6 +2,7 @@ package com.app.hubert.guide.model;
 
 import android.view.View;
 
+import com.app.hubert.guide.listener.OnHighlightCallBack;
 import com.app.hubert.guide.listener.OnHighlightDrewListener;
 
 /**
@@ -12,6 +13,7 @@ public class HighlightOptions {
     public OnScrollListener onScrollChangeListener;
     public RelativeGuide relativeGuide;
     public OnHighlightDrewListener onHighlightDrewListener;
+    public OnHighlightCallBack onHighlightCallBack;
     public boolean fetchLocationEveryTime;
 
     public interface OnScrollListener {
@@ -52,6 +54,11 @@ public class HighlightOptions {
          */
         public Builder setOnHighlightDrewListener(OnHighlightDrewListener listener) {
             options.onHighlightDrewListener = listener;
+            return this;
+        }
+
+        public Builder setOnHighlightCallBack(OnHighlightCallBack listener) {
+            options.onHighlightCallBack = listener;
             return this;
         }
 
