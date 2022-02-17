@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                                     controller.remove();
                                                 }
                                             })
+                                            .ignoreDrawHighLightMask(true)
                                             .build())
                             .setEverywhereCancelable(false))
                     .build();

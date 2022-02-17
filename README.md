@@ -15,6 +15,6 @@ allprojects {
 ### Step 2. Add the dependency
 ```
 dependencies {
-        implementation 'com.github.Savion1162336040:NewbieGuide:1.0.2'
+        implementation 'com.github.Savion1162336040:NewbieGuide:$version'
 }
 ```

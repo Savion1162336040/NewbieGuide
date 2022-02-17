@@ -1,7 +1,10 @@
 package com.app.hubert.guide.model;
 
+import android.graphics.RectF;
 import android.view.View;
 
+import com.app.hubert.guide.core.Controller;
+import com.app.hubert.guide.core.GuideLayout;
 import com.app.hubert.guide.listener.OnHighlightCallBack;
 import com.app.hubert.guide.listener.OnHighlightDrewListener;
 
@@ -15,6 +18,12 @@ public class HighlightOptions {
     public OnHighlightDrewListener onHighlightDrewListener;
     public OnHighlightCallBack onHighlightCallBack;
     public boolean fetchLocationEveryTime;
+    /**
+     * @author savion
+     * @date 2022/2/17
+     * @desc 忽略绘制高亮区域
+     **/
+    public boolean ignoreDrawHighLightMask;
 
     public interface OnScrollListener {
         void onScrollChange(View view, float startX, float startY, float endX, float endY);
@@ -57,8 +66,22 @@ public class HighlightOptions {
             return this;
         }
 
+        /**
+         * @author savion
+         * @date 2022/2/17
+         * @desc guidePage加载时马上回调
+        **/
         public Builder setOnHighlightCallBack(OnHighlightCallBack listener) {
             options.onHighlightCallBack = listener;
+            return this;
+        }
+        /**
+         * @author savion
+         * @date 2022/2/17
+         * @desc 忽略绘制高亮区域mask,可与 {@link OnHighlightCallBack#onHighlightCallBack(GuideLayout, View, Controller, HighLight, RectF)}配合自己在高亮区域添加组件
+        **/
+        public Builder ignoreDrawHighLightMask(boolean ignore) {
+            options.ignoreDrawHighLightMask = ignore;
             return this;
         }
 

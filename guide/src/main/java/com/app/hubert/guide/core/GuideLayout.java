@@ -181,6 +181,11 @@ public class GuideLayout extends FrameLayout {
         List<HighLight> highLights = guidePage.getHighLights();
         if (highLights != null) {
             for (HighLight highLight : highLights) {
+                if (highLight.getOptions() != null
+                        && highLight.getOptions().ignoreDrawHighLightMask) {
+                    //忽略绘制高亮mask
+                    continue;
+                }
                 RectF rectF = highLight.getRectF((ViewGroup) getParent());
                 if (highLight.isDash()) {
                     if (dashPaint == null) {
