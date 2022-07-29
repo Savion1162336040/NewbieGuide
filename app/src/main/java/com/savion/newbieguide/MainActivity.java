@@ -13,7 +13,6 @@ import com.app.hubert.guide.NewbieGuide;
 import com.app.hubert.guide.core.Controller;
 import com.app.hubert.guide.core.GuideLayout;
 import com.app.hubert.guide.listener.OnGuideChangedListener;
-import com.app.hubert.guide.listener.OnGuideClickListener;
 import com.app.hubert.guide.listener.OnHighlightCallBack;
 import com.app.hubert.guide.model.GuidePage;
 import com.app.hubert.guide.model.HighLight;
@@ -87,12 +86,9 @@ public class MainActivity extends AppCompatActivity {
                                                     Log.e("savion", "get rectf333 : " + rectF.toString());
                                                 }
                                             })
-                                            .setOnClickListener(new OnGuideClickListener() {
-                                                @Override
-                                                public void onClick(View view, Controller controller) {
-                                                    if (controller != null) {
-                                                        controller.remove();
-                                                    }
+                                            .setOnClickListener(v -> {
+                                                if (controller != null) {
+                                                    controller.remove();
                                                 }
                                             })
                                             .ignoreDrawHighLightMask(true)
