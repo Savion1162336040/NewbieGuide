@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.app.hubert.guide.core.Controller;
 import com.app.hubert.guide.core.GuideLayout;
+import com.app.hubert.guide.listener.OnGuideClickListener;
 import com.app.hubert.guide.listener.OnHighlightCallBack;
 import com.app.hubert.guide.listener.OnHighlightDrewListener;
 
@@ -12,7 +13,7 @@ import com.app.hubert.guide.listener.OnHighlightDrewListener;
  * Created by hubert on 2018/7/9.
  */
 public class HighlightOptions {
-    public View.OnClickListener onClickListener;
+    public OnGuideClickListener onClickListener;
     public OnScrollListener onScrollChangeListener;
     public RelativeGuide relativeGuide;
     public OnHighlightDrewListener onHighlightDrewListener;
@@ -40,7 +41,7 @@ public class HighlightOptions {
         /**
          * 高亮点击事件
          */
-        public Builder setOnClickListener(View.OnClickListener listener) {
+        public Builder setOnClickListener(OnGuideClickListener listener) {
             options.onClickListener = listener;
             return this;
         }
