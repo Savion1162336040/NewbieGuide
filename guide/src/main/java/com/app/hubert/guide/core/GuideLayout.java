@@ -153,7 +153,7 @@ public class GuideLayout extends FrameLayout {
         HighlightOptions options = highLight.getOptions();
         if (options != null) {
             if (options.onClickListener != null) {
-                options.onClickListener.onClick(this);
+                options.onClickListener.onClick(this, controller);
             }
         }
     }

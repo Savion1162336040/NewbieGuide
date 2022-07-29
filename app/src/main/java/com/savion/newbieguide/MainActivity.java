@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                                     Log.e("savion", "get rectf333 : " + rectF.toString());
                                                 }
                                             })
-                                            .setOnClickListener(v -> {
+                                            .setOnClickListener((v, controller) -> {
                                                 if (controller != null) {
                                                     controller.remove();
                                                 }
